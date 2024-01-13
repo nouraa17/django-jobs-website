@@ -6,9 +6,13 @@ from django.db import models
 #     -db size
 
 JOB_TYPE=(
-    ('FT','Full Time'),
-    ('PT','Part Time'),
+    ('Full Time','Full Time'),
+    ('Part Time','Part Time'),
 )
+
+def image_upload(instance,filename):
+    imagename, extention = filename.split(".")
+    return "jobs/%s.%s"%(instance.id,extention)
 
 # Create your models here.
 class Job(models.Model): #table
@@ -23,6 +27,7 @@ class Job(models.Model): #table
     salary=models.IntegerField(default=0)
     category=models.ForeignKey('Category',on_delete=models.CASCADE) #we put single qoutes because the Category model has not come yet , if we previosly defined it we can type Category without qoutes 
     experience=models.IntegerField(default=0)
+    image=models.ImageField(upload_to=image_upload)
     
     def __str__(self):
         return self.title

@@ -31,3 +31,7 @@ home
 
 
 login 
+
+//////////////////////////////////////////////////////////////
+static files : [frontend] imgs, css, js
+media files : [uploads] images,
